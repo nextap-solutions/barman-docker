@@ -3,3 +3,18 @@ services:
   barman:
     image: tbeadle/barman:2.1
     build: .
+    env_file:
+      - ~/Desktop/Nextap Projects/experiments/pg-backup/.env
+  db:
+    image: postgres:14.7
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    expose:
+      - 5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
